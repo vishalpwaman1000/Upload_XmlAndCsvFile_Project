@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Queries>
+	<InsertBulkUploadData>
+		<![CDATA[
+		INSERT INTO crudoperation.bulkuploadtable
+		(UserName, EmailID, MobileNumber, Age, Salary, Gender) 
+		VALUES
+		(@UserName, @EmailID, @MobileNumber, @Age, @Salary, @Gender);
+		]]>
+	</InsertBulkUploadData>
+</Queries>

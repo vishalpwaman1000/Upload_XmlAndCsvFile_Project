@@ -1,0 +1,10 @@
+create table BulkUploadTable(
+UserId int auto_increment primary key,
+UserName varchar(255),
+EmailID varchar(255),
+MobileNumber varchar(10) default '0',
+Gender varchar(10),
+Age int,
+Salary int,
+IsActive bit default 1
+)
