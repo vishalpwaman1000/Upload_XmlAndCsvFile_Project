@@ -17,6 +17,11 @@ namespace Upload_XmlAndCsvFile_Project.ServiceLayer
             _uploadFileDL = uploadFileDL;
         }
 
+        public async Task<UploadCSVFileResponse> UploadCSVFile(UploadCSVFileRequest request, string Path)
+        {
+            return await _uploadFileDL.UploadCSVFile(request, Path);
+        }
+
         public async Task<UploadXMLFileResponse> UploadXMLFile(UploadXMLFileRequest request, string path)
         {
             return await _uploadFileDL.UploadXMLFile(request, path);

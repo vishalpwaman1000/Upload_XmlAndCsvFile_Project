@@ -29,7 +29,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "Upload_XmlAndCsvFile_Project/1.0.0": {
+      "Upload_ExcelAndCsvFile_Project/1.0.0": {
         "dependencies": {
           "ExcelDataReader": "3.6.0",
           "ExcelDataReader.DataSet": "3.6.0",
@@ -319,10 +319,10 @@
           "WindowsBase": "4.0.0.0"
         },
         "runtime": {
-          "Upload_XmlAndCsvFile_Project.dll": {}
+          "Upload_ExcelAndCsvFile_Project.dll": {}
         },
         "compile": {
-          "Upload_XmlAndCsvFile_Project.dll": {}
+          "Upload_ExcelAndCsvFile_Project.dll": {}
         }
       },
       "ExcelDataReader/3.6.0": {
@@ -2134,7 +2134,7 @@
     }
   },
   "libraries": {
-    "Upload_XmlAndCsvFile_Project/1.0.0": {
+    "Upload_ExcelAndCsvFile_Project/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -23,6 +23,15 @@
           "lib/netstandard2.0/ExcelDataReader.DataSet.dll": {}
         }
       },
+      "LumenWorksCsvReader/4.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/LumenWorks.Framework.IO.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/LumenWorks.Framework.IO.dll": {}
+        }
+      },
       "Microsoft.Extensions.ApiDescription.Server/3.0.0": {
         "type": "package",
         "build": {
@@ -162,6 +171,35 @@
         "lib/netstandard2.0/ExcelDataReader.DataSet.dll",
         "lib/netstandard2.0/ExcelDataReader.DataSet.pdb",
         "lib/netstandard2.0/ExcelDataReader.DataSet.xml"
+      ]
+    },
+    "LumenWorksCsvReader/4.0.0": {
+      "sha512": "CP6bPmDbmV5yT7YwfGxN8Agrdj0nB82b2UitfrnTghqyfF4DXD4UXl8MoCXBz4Ja17bUYqpEDd+qaavh7lwUxg==",
+      "type": "package",
+      "path": "lumenworkscsvreader/4.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net20/LumenWorks.Framework.IO.dll",
+        "lib/net20/LumenWorks.Framework.IO.pdb",
+        "lib/net20/LumenWorks.Framework.IO.xml",
+        "lib/net35/LumenWorks.Framework.IO.dll",
+        "lib/net35/LumenWorks.Framework.IO.pdb",
+        "lib/net35/LumenWorks.Framework.IO.xml",
+        "lib/net45/LumenWorks.Framework.IO.dll",
+        "lib/net45/LumenWorks.Framework.IO.pdb",
+        "lib/net45/LumenWorks.Framework.IO.xml",
+        "lib/net461/LumenWorks.Framework.IO.dll",
+        "lib/net461/LumenWorks.Framework.IO.pdb",
+        "lib/net461/LumenWorks.Framework.IO.xml",
+        "lib/netstandard1.3/LumenWorks.Framework.IO.dll",
+        "lib/netstandard1.3/LumenWorks.Framework.IO.pdb",
+        "lib/netstandard1.3/LumenWorks.Framework.IO.xml",
+        "lib/netstandard2.0/LumenWorks.Framework.IO.dll",
+        "lib/netstandard2.0/LumenWorks.Framework.IO.pdb",
+        "lib/netstandard2.0/LumenWorks.Framework.IO.xml",
+        "lumenworkscsvreader.4.0.0.nupkg.sha512",
+        "lumenworkscsvreader.nuspec"
       ]
     },
     "Microsoft.Extensions.ApiDescription.Server/3.0.0": {
@@ -333,6 +371,7 @@
     ".NETCoreApp,Version=v3.1": [
       "ExcelDataReader >= 3.6.0",
       "ExcelDataReader.DataSet >= 3.6.0",
+      "LumenWorksCsvReader >= 4.0.0",
       "MySqlConnector >= 2.1.6",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
@@ -343,9 +382,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\visha\\source\\repos\\Upload_XmlAndCsvFile_Project\\Upload_XmlAndCsvFile_Project\\Upload_XmlAndCsvFile_Project.csproj",
-      "projectName": "Upload_XmlAndCsvFile_Project",
-      "projectPath": "C:\\Users\\visha\\source\\repos\\Upload_XmlAndCsvFile_Project\\Upload_XmlAndCsvFile_Project\\Upload_XmlAndCsvFile_Project.csproj",
+      "projectUniqueName": "C:\\Users\\visha\\source\\repos\\Upload_XmlAndCsvFile_Project\\Upload_XmlAndCsvFile_Project\\Upload_ExcelAndCsvFile_Project.csproj",
+      "projectName": "Upload_ExcelAndCsvFile_Project",
+      "projectPath": "C:\\Users\\visha\\source\\repos\\Upload_XmlAndCsvFile_Project\\Upload_XmlAndCsvFile_Project\\Upload_ExcelAndCsvFile_Project.csproj",
       "packagesPath": "C:\\Users\\visha\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\visha\\source\\repos\\Upload_XmlAndCsvFile_Project\\Upload_XmlAndCsvFile_Project\\obj\\",
       "projectStyle": "PackageReference",
@@ -383,6 +422,10 @@
           "ExcelDataReader.DataSet": {
             "target": "Package",
             "version": "[3.6.0, )"
+          },
+          "LumenWorksCsvReader": {
+            "target": "Package",
+            "version": "[4.0.0, )"
           },
           "MySqlConnector": {
             "target": "Package",

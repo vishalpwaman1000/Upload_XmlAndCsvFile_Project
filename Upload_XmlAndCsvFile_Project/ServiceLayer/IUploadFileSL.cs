@@ -9,6 +9,7 @@ namespace Upload_XmlAndCsvFile_Project.ServiceLayer
 {
     public interface IUploadFileSL
     {
-        public Task<UploadXMLFileResponse> UploadXMLFile(UploadXMLFileRequest request, string path);
+        public Task<UploadXMLFileResponse> UploadXMLFile(UploadXMLFileRequest request, string Path);
+        public Task<UploadCSVFileResponse> UploadCSVFile(UploadCSVFileRequest request, string Path);
     }
 }
