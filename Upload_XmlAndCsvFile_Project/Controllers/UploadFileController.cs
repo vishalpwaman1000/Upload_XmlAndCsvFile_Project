@@ -1,30 +1,30 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+//using System.IO;
 using System.Threading.Tasks;
+using Upload_ExcelAndCsvFile_Project.CommonLayer.Model;
 using Upload_XmlAndCsvFile_Project.CommonLayer.Model;
 using Upload_XmlAndCsvFile_Project.DataAccessLayer;
 
 namespace Upload_XmlAndCsvFile_Project.Controllers
 {
-    [Route("api/[controller]/[Action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class UploadFileController : ControllerBase
     {
-        public readonly IUploadFileDL _uploadFile;
-        public UploadFileController(IUploadFileDL uploadFile)
+        public readonly IUploadFileDL _uploadFileDL;
+        public UploadFileController(IUploadFileDL uploadFileDL)
         {
-            _uploadFile = uploadFile;
+            _uploadFileDL = uploadFileDL;
         }
 
         [HttpPost]
+        [Route("UploadExcelFile")]
         public async Task<IActionResult> UploadExcelFile([FromForm] UploadXMLFileRequest request)
         {
             UploadXMLFileResponse response = new UploadXMLFileResponse();
-            string path = request.File.FileName;
+            string path = "UploadFileFolder/"+request.File.FileName;
             try
             {
                 
@@ -33,7 +33,15 @@ namespace Upload_XmlAndCsvFile_Project.Controllers
                     await request.File.CopyToAsync(stream);
                 }
 
-                response = await _uploadFile.UploadXMLFile(request, path);
+                response = await _uploadFileDL.UploadXMLFile(request, path);
+
+                string[] files = Directory.GetFiles("UploadFileFolder/");
+                foreach (string file in files)
+                {
+                    System.IO.File.Delete(file);
+                    Console.WriteLine($"{file} is deleted.");
+                }
+
             }
             catch (Exception ex)
             {
@@ -46,10 +54,11 @@ namespace Upload_XmlAndCsvFile_Project.Controllers
         }
 
         [HttpPost]
+        [Route("UploadCSVFile")]
         public async Task<IActionResult> UploadCSVFile([FromForm] UploadCSVFileRequest request)
         {
             UploadCSVFileResponse response = new UploadCSVFileResponse();
-            string path = request.File.FileName;
+            string path = "UploadFileFolder/" + request.File.FileName;
             try
             {
 
@@ -58,13 +67,59 @@ namespace Upload_XmlAndCsvFile_Project.Controllers
                     await request.File.CopyToAsync(stream);
                 }
 
-                response = await _uploadFile.UploadCSVFile(request, path);
+                response = await _uploadFileDL.UploadCSVFile(request, path);
+
+                string[] files = Directory.GetFiles("UploadFileFolder/");
+                foreach (string file in files)
+                {
+                    System.IO.File.Delete(file);
+                    Console.WriteLine($"{file} is deleted.");
+                }
+
             }
             catch (Exception ex)
             {
                 response.IsSuccess = false;
                 response.Message = ex.Message;
 
+            }
+
+            return Ok(response);
+        }
+
+        [HttpPost]
+        [Route("ReadRecord")]
+        public async Task<IActionResult> ReadRecord(ReadRecordRequest request)
+        {
+            ReadRecordResponse response = new ReadRecordResponse();
+            
+            try
+            {
+                response = await _uploadFileDL.ReadRecord(request);
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+
+            return Ok(response);
+        }
+
+        [HttpDelete]
+        [Route("DeleteRecord")]
+        public async Task<IActionResult> DeleteRecord(DeleteRecordRequest request)
+        {
+            DeleteRecordResponse response = new DeleteRecordResponse();
+
+            try
+            {
+                response = await _uploadFileDL.DeleteRecord(request);
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Message = ex.Message;
             }
 
             return Ok(response);

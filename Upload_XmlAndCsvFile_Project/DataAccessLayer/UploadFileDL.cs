@@ -9,6 +9,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Upload_ExcelAndCsvFile_Project.CommonLayer.Model;
 using Upload_XmlAndCsvFile_Project.CommonLayer.Model;
 using Upload_XmlAndCsvFile_Project.CommonUtility;
 
@@ -22,6 +23,105 @@ namespace Upload_XmlAndCsvFile_Project.DataAccessLayer
         {
             _configuration = configuration;
             _mySqlConnection = new MySqlConnection(_configuration["ConnectionStrings:MySqlDBConnectionString"]);
+        }
+
+        public async Task<DeleteRecordResponse> DeleteRecord(DeleteRecordRequest request)
+        {
+            DeleteRecordResponse response = new DeleteRecordResponse();
+            response.IsSuccess = true;
+            response.Message = "Successful";
+            try 
+            {
+                if(_mySqlConnection.State != ConnectionState.Open) 
+                {
+                    await _mySqlConnection.OpenAsync();
+                }
+
+                using (MySqlCommand sqlCommand = new MySqlCommand(SqlQueries.DeleteRecord, _mySqlConnection))
+                {
+                    sqlCommand.CommandType = CommandType.Text;
+                    sqlCommand.CommandTimeout = 180;
+                    sqlCommand.Parameters.AddWithValue("@UserID", request.UserID);
+                    int Status = await sqlCommand.ExecuteNonQueryAsync();
+                    if(Status <= 0) 
+                    {
+                        response.IsSuccess = false;
+                        response.Message = "Delete Query Not Executed";
+                        return response;
+                    }
+                }
+
+            }
+            catch(Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+            finally
+            {
+                await _mySqlConnection.CloseAsync();
+                await _mySqlConnection.DisposeAsync();
+            }
+
+            return response;
+        }
+
+        public async Task<ReadRecordResponse> ReadRecord(ReadRecordRequest request)
+        {
+            ReadRecordResponse response = new ReadRecordResponse();
+            response.IsSuccess = true;
+            response.Message = "Successful";
+            int Count = 0;
+            try
+            {
+
+                if(_mySqlConnection.State != ConnectionState.Open)
+                {
+                    await _mySqlConnection.OpenAsync();
+                }
+
+                using (MySqlCommand sqlCommand = new MySqlCommand(SqlQueries.ReadRecord, _mySqlConnection))
+                {
+                    int Offset = (request.PageNumber - 1) * request.RecordPerPage;
+                    sqlCommand.CommandType = CommandType.Text;
+                    sqlCommand.CommandTimeout = 180;
+                    sqlCommand.Parameters.AddWithValue("@Offset", Offset);
+                    sqlCommand.Parameters.AddWithValue("@RecordPerPage", request.RecordPerPage);
+                    using (MySqlDataReader dataReader = await sqlCommand.ExecuteReaderAsync())
+                    {
+                        if (dataReader.HasRows)
+                        {
+                            response.readRecord = new List<ReadRecord>();
+                            while(await dataReader.ReadAsync())
+                            {
+                                ReadRecord getdata = new ReadRecord();
+                                getdata.UserName = dataReader["UserName"] != DBNull.Value ? Convert.ToString(dataReader["UserName"]) : string.Empty;
+                                getdata.MobileNumber = dataReader["MobileNumber"] != DBNull.Value ? Convert.ToString(dataReader["MobileNumber"]) : string.Empty;
+                                getdata.EmailID = dataReader["EmailID"] != DBNull.Value ? Convert.ToString(dataReader["EmailID"]) : string.Empty;
+                                getdata.Age = dataReader["Age"] != DBNull.Value ? Convert.ToInt32(dataReader["Age"]) : 0;
+                                getdata.Salary = dataReader["Salary"] != DBNull.Value ? Convert.ToInt32(dataReader["Salary"]) : 0;
+                                getdata.UserId = dataReader["UserId"] != DBNull.Value ? Convert.ToInt32(dataReader["UserId"]) : 0;
+                                getdata.Gender = dataReader["Gender"] != DBNull.Value ? Convert.ToString(dataReader["Gender"]) : string.Empty;
+                                if(Count == 0)
+                                {
+                                    Count++;
+                                    response.TotalRecords = dataReader["TotalRecord"] != DBNull.Value ? Convert.ToInt32(dataReader["TotalRecord"]) : 0;
+                                    response.TotalPages = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(response.TotalRecords / request.RecordPerPage)));
+                                    response.CurrentPage = request.PageNumber;
+                                }
+                                response.readRecord.Add(getdata);
+                            }
+                        }
+                    }
+                }
+
+            }catch(Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+
+            return response;
         }
 
         public async Task<UploadCSVFileResponse> UploadCSVFile(UploadCSVFileRequest request, string Path)

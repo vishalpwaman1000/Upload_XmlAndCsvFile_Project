@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\visha\\source\\repos\\Upload_XmlAndCsvFile_Project\\Upload_XmlAndCsvFile_Project\\Upload_ExcelAndCsvFile_Project.csproj": {}
+    "C:\\Users\\visha\\source\\repos\\Excel And CSV File Bulk Upload Project\\Upload_ExcelAndCsvFile_Project\\Upload_XmlAndCsvFile_Project\\Upload_ExcelAndCsvFile_Project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\visha\\source\\repos\\Upload_XmlAndCsvFile_Project\\Upload_XmlAndCsvFile_Project\\Upload_ExcelAndCsvFile_Project.csproj": {
+    "C:\\Users\\visha\\source\\repos\\Excel And CSV File Bulk Upload Project\\Upload_ExcelAndCsvFile_Project\\Upload_XmlAndCsvFile_Project\\Upload_ExcelAndCsvFile_Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\visha\\source\\repos\\Upload_XmlAndCsvFile_Project\\Upload_XmlAndCsvFile_Project\\Upload_ExcelAndCsvFile_Project.csproj",
+        "projectUniqueName": "C:\\Users\\visha\\source\\repos\\Excel And CSV File Bulk Upload Project\\Upload_ExcelAndCsvFile_Project\\Upload_XmlAndCsvFile_Project\\Upload_ExcelAndCsvFile_Project.csproj",
         "projectName": "Upload_ExcelAndCsvFile_Project",
-        "projectPath": "C:\\Users\\visha\\source\\repos\\Upload_XmlAndCsvFile_Project\\Upload_XmlAndCsvFile_Project\\Upload_ExcelAndCsvFile_Project.csproj",
+        "projectPath": "C:\\Users\\visha\\source\\repos\\Excel And CSV File Bulk Upload Project\\Upload_ExcelAndCsvFile_Project\\Upload_XmlAndCsvFile_Project\\Upload_ExcelAndCsvFile_Project.csproj",
         "packagesPath": "C:\\Users\\visha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\visha\\source\\repos\\Upload_XmlAndCsvFile_Project\\Upload_XmlAndCsvFile_Project\\obj\\",
+        "outputPath": "C:\\Users\\visha\\source\\repos\\Excel And CSV File Bulk Upload Project\\Upload_ExcelAndCsvFile_Project\\Upload_XmlAndCsvFile_Project\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\visha\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -52,6 +52,10 @@
               "target": "Package",
               "version": "[4.0.0, )"
             },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "MySqlConnector": {
               "target": "Package",
               "version": "[2.1.6, )"
@@ -79,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
         }
       }
     }

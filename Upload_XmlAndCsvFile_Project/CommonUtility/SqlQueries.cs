@@ -14,6 +14,8 @@ namespace Upload_XmlAndCsvFile_Project.CommonUtility
             .Build();
 
         public static string InsertBulkUploadData { get { return _configuration["InsertBulkUploadData"]; } }
+        public static string ReadRecord { get { return _configuration["ReadRecord"]; } }
+        public static string DeleteRecord { get { return _configuration["DeleteRecord"]; } }
 
     }
 }

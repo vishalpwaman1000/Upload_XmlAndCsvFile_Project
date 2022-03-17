@@ -8,4 +8,26 @@
 		(@UserName, @EmailID, @MobileNumber, @Age, @Salary, @Gender);
 		]]>
 	</InsertBulkUploadData>
+	<ReadRecord>
+		<![CDATA[
+		SELECT DISTINCT UserId, 
+		       UserName, 
+			   EmailID, 
+			   MobileNumber, 
+			   Gender, 
+			   Age, 
+			   Salary, 
+			   IsActive,
+			   (SELECT COUNT(*) FROM crudoperation.bulkuploadtable) AS TotalRecord
+		FROM crudoperation.bulkuploadtable
+		LIMIT @Offset, @RecordPerPage;
+		]]>
+	</ReadRecord>
+	<DeleteRecord>
+		<![CDATA[
+		DELETE
+		FROM crudoperation.bulkuploadtable
+		WHERE UserID=@UserID;
+		]]>
+	</DeleteRecord>
 </Queries>

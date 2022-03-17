@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Upload_XmlAndCsvFile_Project.DataAccessLayer;
-using Upload_XmlAndCsvFile_Project.ServiceLayer;
 
 namespace Upload_XmlAndCsvFile_Project
 {
@@ -32,8 +31,8 @@ namespace Upload_XmlAndCsvFile_Project
             services.AddSwaggerGen();
 
             //Dependency Injection
-            services.AddScoped<IUploadFileSL, UploadFileSL>();
             services.AddScoped<IUploadFileDL, UploadFileDL>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,18 +49,27 @@ namespace Upload_XmlAndCsvFile_Project
 
             app.UseAuthorization();
 
+            app.UseCors();
+            app.UseCors(builder =>
+            {
+                builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
 
             app.UseSwagger();
-
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
                 
             });
+
         }
     }
 }
